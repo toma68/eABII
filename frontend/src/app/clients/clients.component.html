@@ -1,0 +1,50 @@
+<form action="/admin/clients/add" method="post">
+  <input type="text" placeholder="Entrez le nom et le prénom du nouveau client" name="label" required>
+  <button type="submit" class="btn btn-success">Ajouter</button>
+</form>
+<hr>
+<div class="text-center">
+  <input size="80" type="text" id="name" placeholder="Entrez le nom d'un client à rechercher" onkeyup="recherche(this)" autocomplete="off">
+</div>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Nom</th>
+    <th scope="col">Solde</th>
+    <th scope="col">Adhérent</th>
+    <th scope="col">Achat total</th>
+  </tr>
+  </thead>
+  <tbody id="tableau">
+
+  <tr class="table-danger" onclick="document.location.href='/admin/clients/details/CLIENT_ID'">
+    <th></th>
+    <td> €
+    </td>
+    <td>
+
+    </td>
+    <td style="color: #ff0000"></td>
+  </tr>
+
+
+
+  <tr onclick="document.location.href='/admin/clients/details/CLIENT_ID'">
+    <th></th>
+    <td> €
+    </td>
+    <td>
+
+    </td>
+    <td style="color: white"></td>
+  </tr>
+
+  </tbody>
+</table>
+
+
+
+
+
+
