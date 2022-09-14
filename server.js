@@ -3,11 +3,9 @@ const express = require("express");
 const app = express();
 
 require("dotenv").config();
-const PORT = process.env.PORT;
-
-module.exports = sequelize;
 
 const db = require("./backend/models");
+
 db.sequelize.sync({ force: true })
     .then(() => {
         console.log("Synced db.");
@@ -18,13 +16,13 @@ db.sequelize.sync({ force: true })
 
 
 app.use(express.json());
+
+require("./backend/routes/clients.routes")(app);
+require("./backend/routes/categories.routes")(app);
+require("./backend/routes/products.routes")(app);
+
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(chalk.green.bold(`Le serveur est lancé sur le port ${PORT}:`));
     console.log(chalk.blue(`\thttp://localhost:${PORT}`));
 });
-
-const clientsRouter = require("./backend/routes/clients.routes");
-app.use("/clients/", clientsRouter);
-app.use("/products/", productRouter);
-app.use("/categories/", categorieRouter);
-

@@ -1,28 +1,21 @@
-const express = require("express");
-const router = express.Router();
+module.exports = app => {
+    const clients = require("../controller/client.controller");
+    const router = require("express").Router();
 
-//Get all
-router.get("/", (req, res) => {
+    //Add one
+    router.post("/", clients.create);
 
-})
+    //Get all
+    router.get("/", clients.findAll);
 
-//Get one
-router.get("/:id", (req, res) => {
-})
+    //Get one
+    router.get("/:id", clients.findOne);
 
-//Add one
-router.post("/", (req, res) => {
+    //update one
+    router.put("/:id", clients.update);
 
-})
+    //Delete one
+    router.delete("/:id", clients.delete);
 
-//update one
-router.patch("/:id", (req, res) => {
-
-})
-
-//Delete one
-router.delete("/:id", (req, res) => {
-
-})
-
-module.exports = router;
+    app.use('/clients', router);
+}

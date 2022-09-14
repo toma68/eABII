@@ -1,28 +1,24 @@
-const express = require("express");
-const router = express.Router();
+module.exports = app => {
+    const categorie = require("../controller/categories.controller");
+    const router = require("express").Router();
 
-//Get all
-router.get("/", (req, res) => {
+    //Add one
+    router.post("/", categorie.create);
 
-})
+    //Get all
+    router.get("/", categorie.findAll);
 
-//Get one
-router.get("/:id", (req, res) => {
-})
+    //Get all visible
+    router.get("/products", categorie.findAllProductsOrderedByCat);
 
-//Add one
-router.post("/", (req, res) => {
+    //Get one
+    router.get("/:id", categorie.findOne);
 
-})
+    //update one
+    router.put("/:id", categorie.update);
 
-//update one
-router.patch("/:id", (req, res) => {
+    //Delete one
+    router.delete("/:id", categorie.delete);
 
-})
-
-//Delete one
-router.delete("/:id", (req, res) => {
-
-})
-
-module.exports = router;
+    app.use('/categories', router);
+}

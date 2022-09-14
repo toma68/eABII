@@ -1,13 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
     const Categorie = sequelize.define("CATEGORIES", {
         id: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             allowNull: false,
             autoIncrement: true,
             primaryKey: true
         },
         libelle: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         }
     })

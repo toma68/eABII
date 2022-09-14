@@ -1,3 +1,5 @@
+const Client = require("../models").Client;
+
 module.exports = (sequelize, Sequelize) => {
     const Admin = sequelize.define("ADMINS", {
         id: {
@@ -9,10 +11,6 @@ module.exports = (sequelize, Sequelize) => {
         client_id: {
             type: Sequelize.INTEGER,
             allowNull: false,
-            references: {
-                model: Client,
-                key: id
-            }
         }
     });
     return Admin;

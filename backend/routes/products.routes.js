@@ -1,29 +1,24 @@
-const express = require("express");
-const router = express.Router();
+module.exports = app => {
+    const products = require("../controller/product.controller");
+    const router = require("express").Router();
 
-//Get all
-router.get("/", (req, res) => {
+    //Add one
+    router.post("/", products.create);
 
-})
+    //Get all
+    router.get("/", products.findAll);
 
-//Get one
-router.get("/:id", (req, res) => {
+    //Get all visible
+    router.get("/visible", products.findAllVisible);
 
-})
+    //Get one
+    router.get("/:id", products.findOne);
 
-//Add one
-router.post("/", (req, res) => {
+    //update one
+    router.put("/:id", products.update);
 
-})
+    //Delete one
+    router.delete("/:id", products.delete);
 
-//update one
-router.patch("/:id", (req, res) => {
-
-})
-
-//Delete one
-router.delete("/:id", (req, res) => {
-
-})
-
-module.exports = router;
+    app.use('/products', router);
+}

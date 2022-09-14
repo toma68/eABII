@@ -1,6 +1,6 @@
 const db = require("../models");
-const Client = dn.Client;
-const Op = db.Sequelize.Op;
+const Product = db.produits;
+const Categorie = db.categories;
 
 //Create and Save a new Client
 exports.create = (req, res) => {
