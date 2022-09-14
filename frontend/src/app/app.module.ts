@@ -3,16 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
+import { ClientsComponent } from './clients/clients.component';
+import { ProduitsComponent } from './produits/produits.component';
+import { OtherComponent } from './other/other.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    ClientsComponent,
+    ProduitsComponent,
+    OtherComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
