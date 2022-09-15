@@ -1,6 +1,5 @@
 const db = require("../models");
-const Product = db.produits;
-const Categorie = db.categories;
+const Client = db.clients;
 
 //Create and Save a new Client
 exports.create = (req, res) => {
