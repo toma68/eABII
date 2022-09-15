@@ -9,7 +9,7 @@ module.exports = app => {
     router.get("/", products.findAll);
 
     //Get all visible
-    router.get("/visible", products.findAllVisible);
+    router.get("/all", products.findAllVisible);
 
     //Get one
     router.get("/:id", products.findOne);

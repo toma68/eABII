@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
         balance: {
             type: Sequelize.DECIMAL,
             allowNull: false
+        },
+        premium: {
+            type: Sequelize.DATEONLY,
+            allowNull: true
         }
     });
     return Client;

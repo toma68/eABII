@@ -1,6 +1,6 @@
 const db = require("../models");
-const Product = db.produits;
-const Categorie = db.categories;
+const Client = db.clients;
+
 
 //Create and Save a new Client
 exports.create = (req, res) => {
@@ -11,13 +11,13 @@ exports.create = (req, res) => {
     }
 
     //Create Client
-    const client = {
+    const Client = {
         name: req.body.name,
         balance: 0
     };
 
     // Save Client
-    Client.create(client)
+    Client.create(Client)
         .then(data => {
             res.send(data);
         })
@@ -30,7 +30,10 @@ exports.create = (req, res) => {
 
 // Retrieve all Clients from db
 exports.findAll = (req, res) => {
-    CLient.findAll()
+    const name = req.query.name;
+    let condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
+
+    Client.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -82,6 +85,17 @@ exports.update = (req, res) => {
             });
         });
 };
+
+//upgrade to premium
+// exports.upgrade = (req, res) => {
+//     const id = req.params.id;
+//     const duree = req.params.duree;
+//     if (duree >= ) {
+
+//     }
+//     Client.
+
+// }
 
 // Delete a Client with the specified id in the request
 exports.delete = (req, res) => {
