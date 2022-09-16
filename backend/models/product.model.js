@@ -11,7 +11,11 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
         price: {
-            type: Sequelize.DECIMAL,
+            type: Sequelize.DECIMAL(),
+            allowNull: false
+        },
+        price_prime: {
+            type: Sequelize.DECIMAL(),
             allowNull: false
         },
         img_path: {

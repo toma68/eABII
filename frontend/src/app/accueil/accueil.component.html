@@ -1,0 +1,15 @@
+<div class="container-fluid row" id="tableau">
+  <div class="card col-lg-2"  style="border-color: transparent" *ngFor="let product of products|async">
+    {{products}}
+    <img width="250" height="250" src="/static/assets/images/{{product.img_path}}">
+    <div class="card-body">
+      <h2 class="card-title text-center">{{product.name}} </h2>
+      <h3 style="font-size:larger">NA : {{product.price}} € </h3>
+      <h3 style="font-size:larger">A : {{product.price_prime}} € </h3>
+    </div>
+  </div>
+
+
+
+</div>
+

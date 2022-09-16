@@ -1,7 +1,6 @@
 const db = require("../models");
 const Client = db.clients;
 
-
 //Create and Save a new Client
 exports.create = (req, res) => {
     //Validate requeste

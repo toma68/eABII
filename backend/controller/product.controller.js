@@ -5,7 +5,7 @@ const Categorie = db.categories
 //Create and Save a new Product
 exports.create = (req, res) => {
     //Validate requeste
-    if (!req.body.name || !req.body.price) {
+    if (!req.body.name || !req.body.price || !req.body.price_prime) {
         res.status(400).send({ message: "Il faut au minimum un nom et un prix" });
         return;
     }
@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     const Product = {
         name: req.body.name,
         price: req.body.price,
+        price_prime: req.body.price_prime,
         img_path: req.body.img_path, // || default path,  path transmis ou path img par défaut
         categorie_id: req.body.categorie_id, // || id par défaut ?
     };
