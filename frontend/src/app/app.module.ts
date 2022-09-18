@@ -11,6 +11,7 @@ import { ClientsComponent } from './clients/clients.component';
 import { ProduitsComponent } from './produits/produits.component';
 import { OtherComponent } from './other/other.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { ClientDetailsComponent } from './client-details/client-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { AccueilComponent } from './accueil/accueil.component';
     ClientsComponent,
     ProduitsComponent,
     OtherComponent,
-    AccueilComponent
+    AccueilComponent,
+    ClientDetailsComponent
   ],
   imports: [
     BrowserModule,

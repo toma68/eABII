@@ -16,6 +16,7 @@ db.produits.belongsTo(db.categories, {
     foreignKey: "categorie_id"
 });
 
+
 db.categories.hasMany(db.produits, {
     foreignKey: "categorie_id"
 });

@@ -5,7 +5,7 @@ export interface ProductModel {
   price: number,
   price_prime: number,
   img_path: string,
-  categorie_id: number,
-  Visible: boolean
-
+  categorie_id: any,
+  createdAt: any,
+  updatedAt: any
 }

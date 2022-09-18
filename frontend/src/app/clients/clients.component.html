@@ -13,32 +13,23 @@
     <th scope="col">Nom</th>
     <th scope="col">Solde</th>
     <th scope="col">Adhérent</th>
-    <th scope="col">Achat total</th>
   </tr>
   </thead>
   <tbody id="tableau">
 
-  <tr class="table-danger" onclick="document.location.href='/admin/clients/details/CLIENT_ID'">
-    <th></th>
-    <td> €
+
+  <tr on *ngFor="let client of clients|async" routerLink="{{client.id}}" class="table-danger">
+    <th> {{client.name}}</th>
+    <td> {{client.balance/100|currency}}
     </td>
     <td>
-
+      gerer avec node
     </td>
-    <td style="color: #ff0000"></td>
   </tr>
 
 
 
-  <tr onclick="document.location.href='/admin/clients/details/CLIENT_ID'">
-    <th></th>
-    <td> €
-    </td>
-    <td>
 
-    </td>
-    <td style="color: white"></td>
-  </tr>
 
   </tbody>
 </table>
