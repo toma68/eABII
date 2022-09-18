@@ -32,12 +32,21 @@ export class ClientsService{
     return this.http.put(this.baseUrl + "/" + client._id, client);
   }
 
-  addClient(client: { name: any; balance: number; _id: any; premium: any }) {
-    return this.http.post(this.baseUrl, client);
+  addClient(name: string) {
+    return this.http.post(this.baseUrl, {name: name});
   }
 
   isPremium(id : number) : Observable<any> {
     return this.http.get(this.baseUrl + "/isPremium/" + id);
   }
 
+  refill(id: number, amount: number) {
+    console.log(this.baseUrl + "/refill/" + id + "/" + amount);
+    return this.http.put(this.baseUrl + "/refill/" + id, {amount: amount});
+  }
+
+
+  achat(id: number, panier: {id: number; quantity: number; name: string}[]) {
+    return this.http.put(this.baseUrl + "/achat/" + id, {panier: panier});
+  }
 }

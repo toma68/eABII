@@ -17,5 +17,8 @@ module.exports = app => {
     //Delete one
     router.delete("/:id", clients.delete);
 
+    //refill one
+    router.put("/refill/:id", clients.refill);
+
     app.use('/clients', router);
 }

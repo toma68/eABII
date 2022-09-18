@@ -1,6 +1,8 @@
 <form action="/admin/clients/add" method="post">
-  <input type="text" placeholder="Entrez le nom et le prénom du nouveau client" name="label" required>
-  <button type="submit" class="btn btn-success">Ajouter</button>
+  <form [formGroup]="addClient">
+    <input type="text" placeholder="Entrez le nom et le prénom du nouveau client" formControlName="name" required>
+    <button type="submit" class="btn btn-success" (click)="addClientAction()">Ajouter</button>
+  </form>
 </form>
 <hr>
 <div class="text-center">

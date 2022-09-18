@@ -4,6 +4,7 @@ import {ClientsModel} from "../core/models/clients.model";
 import {Observable} from "rxjs";
 import {ClientsService} from "../core/services/clients.service";
 import {ProductModel} from "../core/models/product.model";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-clients',
@@ -13,13 +14,27 @@ import {ProductModel} from "../core/models/product.model";
 export class ClientsComponent implements OnInit {
 
   clients!: Observable<ClientsModel[]>;
-
-  constructor(private clientService: ClientsService) {
+  addClient!: FormGroup
+  constructor(private clientService: ClientsService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.clients = this.clientService.getClients();
+
+    this.addClient = this.formBuilder.group({
+      name: [null, [Validators.required]]
+    });
   }
+
+  addClientAction() {
+    console.log(this.addClient.value)
+    this.clientService.addClient(this.addClient.value.name).subscribe(rep => {
+      this.clients = this.clientService.getClients();
+    });
+  }
+
+
 }
 
 

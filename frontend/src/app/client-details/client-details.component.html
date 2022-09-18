@@ -1,1 +1,71 @@
-<p>client-details works!</p>
+<a href="/admin/clients">
+  <button class="btn btn-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
+    </svg>
+  </button>
+</a>
+<div class="container mt-5 p-5 border border-dark rounded">
+
+  <div id="message_flashed"></div>
+  <h2 style="display: flex">{{ (client|async)?.name }}</h2>
+  <h4 style="display: flex">Date de fin d'adhésion : {{ (client|async)?.premium }}</h4>
+  <button routerLink="edit" class="btn btn-success mt-4" style="display: flex">Editer</button>
+  <hr>
+  <p style="font-size: larger">Solde : <strong>{{ ((client|async)?.balance) }} €</strong></p>
+  <p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRechargement" aria-expanded="false" aria-controls="collapseExample">
+      Recharger solde
+    </button>
+  </p>
+  <div class="collapse" id="collapseRechargement">
+   <form [formGroup]="refillForm">
+    <div class="input-group mb-3">
+      <input type="number" class="form-control" placeholder="Montant" aria-label="Montant" aria-describedby="button-addon2" formControlName="amount">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="refill()">Recharger</button>
+      <input type="hidden" formControlName="id" value="{{ (client|async)?.id }}">
+      <input type="hidden" formControlName="amount" value="{{ (client|async)?.balance }}">
+    </div>
+   </form>
+  </div>
+
+  <hr>
+
+  <h2> Achat :</h2>
+
+  <div class="panier">
+    <h3>Panier</h3>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <td>Produit</td>
+        <td>Quantité</td>
+        <td>Modifier</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of panier">
+        <td>{{ product.name }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <button class="btn btn-primary me-2" (click)="addProduct(product.id)">+</button>
+          <button class="btn btn-danger" (click)="removeProduct(product.id)">-</button>
+</td>
+      </tr>
+    </table>
+    <button class="btn btn-success ms-auto" (click)="validerPanier()">Valider l'achat</button>
+  </div>
+
+  <div class="container-fluid row" id="tableau">
+    <div (click)="addToPanier(product.id, product.name)" *ngFor="let product of products|async" class="card col-lg-2" style="border-color: transparent">
+      <img width="250" height="250" src="/static/assets/images/{{product.img_path}}">
+      <div class="card-body">
+        <h2 class="card-title text-center">{{product.name}} </h2>
+        <h3 style="font-size:larger">NA : {{(product.price)}}</h3>
+        <h3 style="font-size:larger">A : {{(product.price_prime)}}</h3>
+      </div>
+    </div>
+  </div>
+
+
+</div>

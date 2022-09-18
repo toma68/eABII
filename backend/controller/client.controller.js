@@ -12,7 +12,8 @@ exports.create = (req, res) => {
     //Create Client
     const Client = {
         name: req.body.name,
-        balance: 0
+        balance: 0,
+        premium: '2000-01-01'
     };
 
     // Save Client
@@ -120,3 +121,37 @@ exports.delete = (req, res) => {
             });
         });
 };
+
+exports.refill = (req, res) => {
+    const id = req.params.id;
+    const amount = req.body.amount;
+    Client.findByPk(id)
+        .then(data => {
+            if (data) {
+                Client.update({ balance: data.balance + amount }, {
+                    where: { id: id }
+                })
+                    .then(num => {
+                        if (num == 1) {
+                            res.send({
+                                message: "Client was updated successfully."
+                            });
+                        } else {
+                            res.send({
+                                message: `Cannot update Client with id=${id}. Maybe Client was not found or req.body is empty!`
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: "Error updating Client with id=" + id
+                        });
+                    });
+            } else {
+                res.status(400).send({ message: `Cannot find Client with id : ${id}` });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: `Error retrieving Client with id : ${id}` });
+        });
+}
