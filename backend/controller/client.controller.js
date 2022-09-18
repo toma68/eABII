@@ -10,14 +10,14 @@ exports.create = (req, res) => {
     }
 
     //Create Client
-    const Client = {
+    const client = {
         name: req.body.name,
         balance: 0,
         premium: '2000-01-01'
     };
 
     // Save Client
-    Client.create(Client)
+    Client.create(client)
         .then(data => {
             res.send(data);
         })

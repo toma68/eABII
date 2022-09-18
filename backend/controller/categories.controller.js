@@ -11,12 +11,12 @@ exports.create = (req, res) => {
     }
 
     //Create Categorie
-    const Categorie = {
+    const categorie = {
         libelle: req.body.name,
     };
 
     // Save Categorie
-    Categorie.create(Categorie)
+    Categorie.create(categorie)
         .then(data => {
             res.send(data);
         })

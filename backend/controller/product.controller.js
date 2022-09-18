@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     }
 
     //Create Product
-    const Product = {
+    const product = {
         name: req.body.name,
         price: req.body.price,
         price_prime: req.body.price_prime,
@@ -20,7 +20,7 @@ exports.create = (req, res) => {
     };
 
     // Save Product
-    Product.create(Product)
+    Product.create(product)
         .then(data => {
             res.send(data);
         })
